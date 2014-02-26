@@ -1,4 +1,6 @@
 from pyramid.view import view_config
+from . import forms
+from deform import Form
 
 
 @view_config(route_name='home', renderer='pyvideohub:templates/home.jinja2')
@@ -7,7 +9,8 @@ def home_view(request):
 
 @view_config(route_name='upload', renderer='pyvideohub:templates/upload.jinja2')
 def upload_view(request):
-    return {}
+    form = Form(forms.UploadSchema())
+    return {'form': form}
 
 @view_config(route_name='about', renderer='pyvideohub:templates/about.jinja2')
 def about_view(request):
