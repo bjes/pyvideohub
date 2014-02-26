@@ -31,7 +31,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             {% block home_link %}<li><a href="{{ request.route_path('home') }}">首頁</a></li>{% endblock home_link%}
-            {% block upload_link %}<li><a href="{{ request.route_path('upload') }}">上傳影片</a></li>{% endblock upload_link %}
+            {% block upload_link %}<li><a href="{{ request.route_path('upload') }}">上傳</a></li>{% endblock upload_link %}
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% block about_link %}<li><a href="{{ request.route_path('about') }}">關於</a></li>{% endblock about_link%}
