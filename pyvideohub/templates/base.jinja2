@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}影音集散地{% endblock title %}</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ request.static_path('pyvideohub:static/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">切換導覽</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ request.route_path('home') }}">影音集散地</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {% block home_link %}<li><a href="{{ request.route_path('home') }}">首頁</a></li>{% endblock home_link%}
+            {% block upload_link %}<li><a href="{{ request.route_path('upload') }}">上傳影片</a></li>{% endblock upload_link %}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% block about_link %}<li><a href="{{ request.route_path('about') }}">關於</a></li>{% endblock about_link%}
+            {% block contact_link %}<li><a href="{{ request.route_path('contact') }}">連絡我們</a></li>{% endblock contact_link %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    {% block content %}{% endblock content%}
+
+    <script src="{{ request.static_path('pyvideohub:static/js/jquery.js') }}"></script>
+    <script src="{{ request.static_path('pyvideohub:static/js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
