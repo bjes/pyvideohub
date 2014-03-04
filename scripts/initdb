@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+
+def main():
+    import sys
+    from pyramid.paster import get_appsettings
+    from sqlalchemy import engine_from_config
+    from pyvideohub.models import ScopedSession, Base
+    
+    config_file = sys.argv[1]
+    settings = get_appsettings(config_file)
+    engine = engine_from_config(settings, 'sqlalchemy.')
+    ScopedSession.configure(bind=engine)
+    Base.metadata.create_all(engine)
+
+    print('DB initialized done.')
+    
+
+
+if __name__ == '__main__':
+    main()
