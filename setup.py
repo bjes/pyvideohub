@@ -13,7 +13,8 @@ requires = [
     'pyramid_jinja2',
     'pyramid_debugtoolbar',
     'waitress',
-    'deform'
+    'WTForms',
+    'SQLAlchemy'
     ]
 
 setup(name='pyvideohub',
