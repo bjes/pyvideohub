@@ -1,2 +1,14 @@
 {% extends "pyvideohub:templates/base.jinja2" %}
-{% block home_link %}<li class="active"><a href="{{ request.route_path('home') }}"><span class="glyphicon glyphicon-home"></span> 首頁</a></li>{% endblock home_link %}
+
+{% block home_link %}
+    <li class="active"><a href="{{ request.route_path('home') }}"><span class="glyphicon glyphicon-home"></span> 首頁</a></li>
+{% endblock home_link %}
+
+{% block content %}
+    {% for each_flash in request.session.pop_flash() %}
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>{{ each_flash }}</strong>
+        </div>
+    {% endfor %}
+{% endblock content%}
