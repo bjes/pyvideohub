@@ -67,7 +67,3 @@ def about_view(request):
 @view_config(route_name='contact_us', renderer='pyvideohub:templates/contact_us.jinja2')
 def contact_us_view(request):
     return {}
-
-@view_config(route_name='celery', renderer='pyvideohub:templates/celery.jinja2')
-def celery_view(request):
-    return {}
