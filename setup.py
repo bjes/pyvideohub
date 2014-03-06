@@ -14,7 +14,9 @@ requires = [
     'pyramid_debugtoolbar',
     'waitress',
     'WTForms',
-    'SQLAlchemy'
+    'SQLAlchemy',
+    'Celery',
+    'celery[redis]'
     ]
 
 setup(name='pyvideohub',
