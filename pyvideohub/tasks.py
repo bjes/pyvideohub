@@ -10,5 +10,5 @@ def convert_video(cmd, options, dst_basedir, tmp_filename):
     new_filename = tmp_filename[4:]
     src_ab_path = os.path.join(dst_basedir, tmp_filename)
     dst_ab_path = os.path.join(dst_basedir, new_filename)
-    subprocess.call('{} {} -i {} {}'.format(cmd, options, src_ab_path, dst_basedir), shell=True)
+    subprocess.call('{0} -i {2} {1} {3}'.format(cmd, options, src_ab_path, dst_ab_path), shell=True)
     os.remove(src_ab_path)
