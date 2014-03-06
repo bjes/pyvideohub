@@ -1,6 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, SmallInteger, String, Text
 from contextlib import contextmanager
 
 ScopedSession = scoped_session(sessionmaker())
@@ -17,5 +17,6 @@ class Video(Base):
     __tablename__ = 'videos'
 
     id = Column(Integer, primary_key=True)
-    title = Column(String(50))
-    description = Column(Text)
+    title = Column(String(50), nullable=False)
+    description = Column(Text, nullable=True)
+    status = Column(SmallInteger, default=0, nullable=False)
