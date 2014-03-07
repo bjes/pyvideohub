@@ -15,6 +15,6 @@ class UploadForm(Form):
             raise validators.ValidationError('影片檔案為必要欄位')
         else:
             allowed_type = ['avi', 'wmv', 'mpg', 'mpeg', 'mp4']
-            if os.path.splitext(field.data.filename)[1].lower() not in allowd_type:
-                raise validators.ValidationError('只接受以下格式： {}'.format(' '.join(allowed_type)))
+            if os.path.splitext(field.data.filename)[1][1:].lower() not in allowed_type:
+                raise validators.ValidationError('只接受以下格式： {}'.format(os.path.splitext(field.data.filename)[1], ' '.join(allowed_type)))
 
