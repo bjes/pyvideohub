@@ -20,5 +20,6 @@ class Video(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(50), nullable=False)
     description = Column(Text, nullable=True)
+    location = Column(String(255), nullable=False)
     upload_date = Column(DateTime, default=datetime.datetime.now, nullable=False)
     status = Column(SmallInteger, default=0, nullable=False)

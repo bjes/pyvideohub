@@ -1,11 +1,13 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 from . import forms
-from .models import DBSession
+from .models import DBSession, Video
 
 @view_config(route_name='home', renderer='pyvideohub:templates/home.jinja2')
 def home_view(request):
-    return {}
+    with DBSession() as db:
+        videos = db.query(Video).filter(Video.status==1).all()
+    return {'videos': videos}
 
 @view_config(route_name='upload', renderer='pyvideohub:templates/upload.jinja2',
              request_method='GET')
@@ -21,13 +23,16 @@ def upload_view_via_post(request):
     form = forms.UploadForm(request.POST)
     if form.validate():
         with DBSession() as db:
+            today = datetime.datetime.today()
+
             new_video = Video()
             form.populate_obj(new_video)
             db.add(new_video)
             db.commit()
+            new_video.location = os.path.join(str(today.year), str(today.month), str(new_video.id))
+            db.commit()
 
             # 將檔案寫入 video.store_path 路徑
-            today = datetime.datetime.today()
             store_path = request.registry.settings['video.store_path']
             new_file_name = ''.join(['tmp-', str(new_video.id),
                                     os.path.splitext(request.POST[form.file.name].filename)[1]])
