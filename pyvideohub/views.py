@@ -18,7 +18,6 @@ def upload_view_via_get(request):
 def upload_view_via_post(request):
     import os, datetime
     from .models import Video
-    from .tasks import convert_video
     form = forms.UploadForm(request.POST)
     if form.validate():
         with DBSession() as db:
@@ -30,8 +29,6 @@ def upload_view_via_post(request):
             # 將檔案寫入 video.store_path 路徑
             today = datetime.datetime.today()
             store_path = request.registry.settings['video.store_path']
-            # tmp- 開頭的檔案接是使用者傳上來的原始檔案，之後轉檔後的檔名會去掉 tmp- 開頭
-            # 原始檔案也會刪掉
             new_file_name = ''.join(['tmp-', str(new_video.id),
                                     os.path.splitext(request.POST[form.file.name].filename)[1]])
             dst_path_basedir = os.path.join(store_path, str(today.year), str(today.month))
@@ -52,8 +49,6 @@ def upload_view_via_post(request):
                     break
                 output_file.write(content)
             output_file.close()
-
-            convert_video.delay('/usr/bin/ffmpeg', '-s 480x320 -vcodec libx264 -strict experimental -y', dst_path_basedir, new_file_name)
 
             request.session.flash('新增影片成功')
             return HTTPFound('/')
