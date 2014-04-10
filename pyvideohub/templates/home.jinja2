@@ -14,10 +14,9 @@
     {% for video in videos %}
     <div class="col-md-4">
         <div class="thumbnail">
-            <video width="480" height="320" controls="controls">
-                <source src="{{ request.static_url('pyvideohub:video/') }}{{ video.location }}" type="video/mp4" />
+            <video width="100%" controls="controls">
+                <source src="{{ request.static_url('pyvideohub:videos/') }}{{ video.location }}" type="video/mp4" />
             </video>
-            <img src="{{ request.static_url('pyvideohub:static/waiting.png') }}" alt="等待轉檔中" />
             <div class="caption">
                 <h3>{{ video.title }}</h3>
                 <p>{{ video.description }}</p>

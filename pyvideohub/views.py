@@ -29,7 +29,9 @@ def upload_view_via_post(request):
             form.populate_obj(new_video)
             db.add(new_video)
             db.commit()
-            new_video.location = os.path.join(str(today.year), str(today.month), str(new_video.id))
+            new_video.location = os.path.join(
+                str(today.year), str(today.month), '{}.mp4'.format(str(new_video.id))
+            )
             db.commit()
 
             # 將檔案寫入 video.store_path 路徑
