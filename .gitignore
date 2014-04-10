@@ -2,4 +2,4 @@
 __pycache__
 development.ini
 production.ini
-videos/*
+pyvideohub/videos/*
