@@ -12,12 +12,11 @@ requires = [
     'pyramid',
     'pyramid_jinja2',
     'pyramid_debugtoolbar',
+    'pyramid_redis_sessions',
     'waitress',
     'WTForms',
     'mysql-connector-python',
     'SQLAlchemy',
-    'Celery',
-    'celery[redis]',
     ]
 
 setup(name='pyvideohub',
